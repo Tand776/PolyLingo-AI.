@@ -27,7 +27,10 @@ export default function RegisterScreen() {
   const [formError, setFormError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  const set = (key) => (val) => setForm((f) => ({ ...f, [key]: val }));
+  const set = (key) => (val) => {
+    setForm((f) => ({ ...f, [key]: val }));
+    setErrors((e) => (e[key] ? { ...e, [key]: undefined } : e));
+  };
 
   function validate() {
     const next = {

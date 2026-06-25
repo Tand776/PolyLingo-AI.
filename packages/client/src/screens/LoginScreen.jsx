@@ -17,6 +17,9 @@ export default function LoginScreen() {
   const [formError, setFormError] = useState(null);
   const [loading, setLoading] = useState(false);
 
+  const clearError = (key) =>
+    setErrors((e) => (e[key] ? { ...e, [key]: undefined } : e));
+
   function validate() {
     const next = {};
     const e = validateEmail(email);
@@ -57,7 +60,7 @@ export default function LoginScreen() {
           label="Email"
           type="email"
           value={email}
-          onChange={setEmail}
+          onChange={(v) => { setEmail(v); clearError("email"); }}
           error={errors.email}
           autoComplete="email"
           placeholder="you@example.com"
@@ -67,7 +70,7 @@ export default function LoginScreen() {
           label="Password"
           type="password"
           value={password}
-          onChange={setPassword}
+          onChange={(v) => { setPassword(v); clearError("password"); }}
           error={errors.password}
           autoComplete="current-password"
           placeholder="Your password"
