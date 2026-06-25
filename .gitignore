@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.local
+*.log
+npm-debug.log*
+.DS_Store
+.vite/
+
+# Firebase emulator artifacts
+*-debug.log
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+.firebase/

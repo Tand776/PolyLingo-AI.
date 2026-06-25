@@ -1,0 +1,26 @@
+{
+  "name": "polylingo-ai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "PolyLingo-AI — an AI-powered multilingual translation app",
+  "type": "module",
+  "workspaces": [
+    "packages/server",
+    "packages/client"
+  ],
+  "scripts": {
+    "dev": "concurrently -n server,client -c blue,magenta \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "npm run dev --workspace @polylingo/server",
+    "dev:client": "npm run dev --workspace @polylingo/client",
+    "build": "npm run build --workspace @polylingo/client",
+    "start": "npm run start --workspace @polylingo/server",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "emulators": "firebase emulators:start --project demo-polylingo",
+    "dev:all": "concurrently -n emulators,server,client -c yellow,blue,magenta \"npm:emulators\" \"npm:dev:server\" \"npm:dev:client\""
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0",
+    "firebase-tools": "^13.29.1"
+  }
+}
