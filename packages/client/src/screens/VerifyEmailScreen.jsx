@@ -27,8 +27,8 @@ export default function VerifyEmailScreen() {
   async function handleRefresh() {
     setBusy("refresh");
     setStatus(null);
-    await reloadUser();
-    if (user?.emailVerified) {
+    const refreshed = await reloadUser();
+    if (refreshed?.emailVerified) {
       navigate("/");
     } else {
       setStatus({ type: "err", msg: "Not verified yet. Check your inbox." });

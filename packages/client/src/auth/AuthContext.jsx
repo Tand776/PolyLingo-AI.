@@ -83,7 +83,9 @@ export function AuthProvider({ children }) {
     if (auth.currentUser) {
       await auth.currentUser.reload();
       setUser({ ...auth.currentUser });
+      return auth.currentUser;
     }
+    return null;
   }, []);
 
   const deleteAccount = useCallback(async () => {
