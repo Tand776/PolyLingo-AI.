@@ -26,7 +26,13 @@ export default function ForgotPasswordScreen() {
       await resetPassword(email.trim());
       setSent(true);
     } catch (ex) {
-      setFormError(friendlyAuthError(ex));
+      // Avoid account enumeration: don't reveal whether the email exists.
+      const code = ex?.code || "";
+      if (code === "auth/user-not-found" || code === "auth/invalid-email") {
+        setSent(true);
+      } else {
+        setFormError(friendlyAuthError(ex));
+      }
     } finally {
       setLoading(false);
     }
